@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+*{
+  padding:0;
+  margin:0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #f2f2f2;
+  --bg-secondary: #c2c2c2;
+  --transition-speed: 600ms;
+}
+
+#notifButton{
+  z-index: 1004;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background: black;
+  top: 4rem;
+  right: 1rem;
+  background-color: #f2f2f2;
+}
+#exclam{
+  position: relative;
+  text-align: center;
+  top: -45%;
+  color: #3fa585;
+  font-size: 3.5rem;
+}
+#mapDiv{
+  position: absolute;
+  overflow: hidden;
+  top: 3rem;
+  height: calc(100% - 5.5rem);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#map{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+}
+#topBar{
+  width: 100%;
+  height: 3rem;
+  background-color: #f2f2f2;
+  z-index: 1003;
+  position: absolute;
+}
+.slides > div > div > div{
+  margin-top: 0.75rem;
+  height: 3rem;
+  width: 100%;
+  font-size: 0.75rem;
+  font-family: 'Roboto', sans-serif;
+}
+.slides > div > div > div > select{
+  height: 2.5rem;
+  font-size: 0.75rem;
+  border-radius: 1rem;
+  padding: 0.25rem;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid #f2f2f2;
+}
+.slides > div > div > div > select:focus {
+  transition: 0.5s;
+  border: 2px solid #3fa585;
+}
+#heading{
+  font-family: 'Bebas Neue';
+  font-size: 2.5rem;
+}
+
+.slides > div > div{
+  position: absolute;
+  width: calc(100% - 1rem);
+  height: calc(100% - 6.5rem);
+  top: 3rem;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.slider {
+  z-index: 1001;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  /*
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: mandatory;
+  */
+}
+.slides::-webkit-scrollbar {
+  width: 5px;
+  height: 7px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100%;
+  background: #ffffff;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  display: flex;
+  font-size: 100px;
+}
+.author-info a {
+  color: white;
+}
+img {
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slider > a:active {
+  top: 1px;
+}
+.slider > a:focus {
+  background: #000;
+}
+
+/* Don't need button navigation */
+@supports (scroll-snap-type) {
+  .slider > a {
+    display: none;
+  }
+}
+
+html, body {
+  height: 100%;
+  overflow: scroll;
+}
+body {
+  display: absolute;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar {
+  z-index: 1004;
+  position: fixed;
+  background-color: var(--bg-primary);
+  transition: width 600ms ease;
+  overflow: scroll;
+  bottom: 0;
+  width: 100vw;
+  height: 3rem;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  flex-direction: row;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-item:last-child {
+  margin-top: auto;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+  justify-content: center;
+}
+
+.nav-link:hover {
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+
+.nav-link svg {
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  margin: 0 2rem;
+}
+
+.fa-primary {
+  color: #ff7eee;
+}
+
+.fa-secondary {
+  color: #df49a6;
+}
+.fa-primary, .fa-secondary {
+  transition: var(--transition-speed);
+}
+
+
+.dark {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+}
+
+.light {
+  --text-primary: #1f1f1f;
+  --text-secondary: #000000;
+  --bg-primary: #ffffff;
+  --bg-secondary: #e4e4e4;
+}
+
+.solar {
+  --text-primary: #576e75;
+  --text-secondary: #35535c;
+  --bg-primary: #fdf6e3;
+  --bg-secondary: #f5e5b8;
+}
+
+.theme-icon {
+  display: none;
+}
+
+.dark #darkIcon {
+  display: block;
+}
+
+.light #lightIcon {
+  display: block;
+}
+
+.solar #solarIcon {
+  display: block;
+}
