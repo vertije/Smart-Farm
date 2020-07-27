@@ -1,3 +1,21 @@
+function openPestInfo(){
+  document.getElementById("pestInfo").style.display = "block";
+  document.getElementById("pestInfo").style.opacity = 1;
+}
+function closePestInfo(){
+  document.getElementById("pestInfo").style.display = "none";
+  document.getElementById("pestInfo").style.opacity = 0;
+}
+function openNotifications(){
+  document.getElementById("notifications").style.display = "block";
+  document.getElementById("notifications").style.opacity = 1;
+}
+function closeNotifications(){
+  document.getElementById("notifications").style.display = "none";
+  document.getElementById("notifications").style.opacity = 0;
+}
+
+
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
