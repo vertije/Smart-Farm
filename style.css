@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
 *{
   padding:0;
   margin:0;
@@ -11,12 +19,76 @@
   --bg-secondary: #c2c2c2;
   --transition-speed: 600ms;
 }
-
+.pestName{
+  font-size: .95rem;
+}
+.sepScroll{
+  overflow-y: scroll;
+}
+.pestLocation{
+  font-size: 0.8rem;
+}
+.highDensity{
+  color: red;
+  height: auto;
+  margin-bottom: 0.25rem;
+}
+.lowDensity{
+  color: green;
+  height: auto;
+  margin-bottom: 0.25rem;
+}
+.mediumDensity{
+  color: orange;
+  height: auto;
+  margin-bottom: 0.25rem;
+}
+.description{
+  width: 100%;
+  height: auto;
+  font-size: 0.775rem;
+}
+.image{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  position: inherit;
+  margin-bottom: 0.2rem;
+}
+#pestInfoClose, #notificationClose{
+  filter: grayscale(100%);
+  width: 1.5rem;
+  height: auto;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+#sep{
+  height: 1px;
+  width: calc(100% - 1rem;);
+  background: #f2f2f2;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+#pestInfo, #notifications{
+  display: none;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  position: absolute;
+  width: calc(100% - 1rem);
+  height: calc(100% - 7rem);
+  top: 3rem;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.5rem;
+  background-color: white;
+  z-index: 1006;
+}
 #notifButton{
   z-index: 1004;
   position: absolute;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 1rem;
   background: black;
   top: 4rem;
@@ -26,9 +98,9 @@
 #exclam{
   position: relative;
   text-align: center;
-  top: -45%;
+  top: -60%;
   color: #3fa585;
-  font-size: 3.5rem;
+  font-size: 2.75rem;
 }
 #mapDiv{
   position: absolute;
@@ -38,6 +110,9 @@
   width: 100%;
   padding: 0;
   margin: 0;
+}
+#slide-3{
+  touch-action: none;
 }
 #map{
   position: fixed;
@@ -59,7 +134,7 @@
   font-size: 0.75rem;
   font-family: 'Roboto', sans-serif;
 }
-.slides > div > div > div > select{
+.slides > div > div > div > select, .slides > div > div > div > textarea, .slides > div > div > div > input, .slides > div > div > div > form > input{
   height: 2.5rem;
   font-size: 0.75rem;
   border-radius: 1rem;
@@ -67,11 +142,61 @@
   font-family: 'Roboto', sans-serif;
   border: 2px solid #f2f2f2;
 }
-.slides > div > div > div > select:focus {
+#descForm, #date{
+  width: calc(100% - 1.25rem);
+  padding: 0.5rem;
+  overflow: scroll;
+}
+#dateDiv{
+  margin-top: 2rem;
+}
+#date{
+  height: 1.25rem;
+}
+#img {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+}
+
+#uploadPic{
+  margin-top: 1.5rem;
+  width: calc(100% - 0.3rem);
+  height: 3rem;
+  background-color: #f2f2f2;
+  border-radius: 1rem;
+  text-align: center;
+  border: 2px solid #f2f2f2
+}
+#imgLabel{
+  position: relative;
+  top: 35%;
+}
+#uploadPic:hover, #postButton:focus{
   transition: 0.5s;
   border: 2px solid #3fa585;
 }
-#heading{
+#postButton{
+  position: inherit;
+  bottom: 1rem;
+  width: calc(100% - 1rem);
+  height: 3rem;
+  background-color: #f2f2f2;
+  border-radius: 1rem;
+  text-align: center;
+  border: 2px solid #f2f2f2
+}
+#ast{
+  color: red;
+}
+.slides > div > div > div > select:focus, .slides > div > div > div > textarea:focus, .slides > div > div > div > input:focus {
+  transition: 0.5s;
+  border: 2px solid #3fa585;
+}
+.heading{
+  margin-top: 0;
   font-family: 'Bebas Neue';
   font-size: 2.5rem;
 }
@@ -114,27 +239,28 @@
   scroll-snap-type: mandatory;
   */
 }
-.slides::-webkit-scrollbar {
-  width: 5px;
-  height: 7px;
+.slides::-webkit-scrollbar, #descForm::-webkit-scrollbar {
+  width: 0.0rem;
+  height: 0.5rem;
 }
-.slides::-webkit-scrollbar-thumb {
+.slides::-webkit-scrollbar-thumb, #descForm::-webkit-scrollbar-thumb {
   background: black;
   border-radius: 10px;
+  opacity: 0.5
 }
-.slides::-webkit-scrollbar-track {
+.slides::-webkit-scrollbar-track. #descForm::-webkit-scrollbar-track {
   background: transparent;
 }
 .slides > div {
   scroll-snap-align: start;
   flex-shrink: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   background: #ffffff;
   transform-origin: center center;
   transform: scale(1);
   transition: transform 0.5s;
-  position: relative;
+  position: flex;
   display: flex;
   font-size: 100px;
 }
@@ -280,4 +406,4 @@ body {
 
 .solar #solarIcon {
   display: block;
-}
+} */
