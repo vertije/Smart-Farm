@@ -4,12 +4,25 @@
   <title>Smart Farm</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="style.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeqcTqg2f0qYqELzFBtUfO3VJJcIwYlS8&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
 </head>
 <body>
+  <div id="notifications">
+    <span class="heading">Notifications</span>
+    <svg id="notificationClose" onclick="closeNotifications()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+  </div>
+  <div id="pestInfo">
+    <span class="heading">Pest Name</span>
+    <svg id="pestInfoClose" onclick="closePestInfo()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+  </div>
   <div id="topBar">
 
   </div>
-  <a id="notifButton">
+  <a id="notifButton" onclick="openNotifications()">
     <div id="exclam">
       <b>!</b>
     </div>
@@ -44,28 +57,72 @@
   <div class="slider">
     <div class="slides">
       <div id="slide-1">
-        <div id="header2">
-          <span id="heading">Main Page</span>
+        <div class="sepScroll">
+          <div id="pest1">
+            <span class="pestName" onclick="openPestInfo()"><b>Russian Aphid</b></span><br>
+            <span class="pestLocation">Sam's Farm</span>
+            <div id="sep"></div>
+            <img src="https://www.dpi.nsw.gov.au/__data/assets/image/0005/709358/varieties/thumb_gallery.jpg" class="image">
+            <div class="highDensity"><b>High Density</b></div>
+            <div class="description">Found a few popping around earlier than usual. This is a test to add a second line to the text.</div>
+            <div id="sep"></div>
+            <span class="pestName" onclick="openPestInfo()"><b>Army Worm</b></span><br>
+            <span class="pestLocation">George's Fruit</span>
+            <div id="sep"></div>
+            <img src="https://images.theconversation.com/files/217833/original/file-20180506-166887-woknll.png?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" class="image">
+            <div class="lowDensity"><b>Low Density</b></div>
+            <div class="description">Found three of these guys scattered around my farm.</div>
+            <div id="sep"></div>
+            <span class="pestName" onclick="openPestInfo()"><b>Common Fruit Fly</b></span><br>
+            <span class="pestLocation">Sam's Farm</span>
+            <div id="sep"></div>
+            <img src="https://cdn.the-scientist.com/assets/articleNo/64566/aImg/27797/fliesthumb-l.jpg" class="image">
+            <div class="mediumDensity"><b>Medium Density</b></div>
+            <div class="description">Looks like the breeding season is starting a little early.</div>
+            <div id="sep"></div>
+          </div>
         </div>
       </div>
       <div id="slide-2">
-        <div id="header2">
-          <span id="heading">Add Alert</span>
-          <br>
+        <div>
+          <span class="heading">Add Alert</span>
+          <div id="sep"></div>
           <div id="pestList">
-            <label for="pestSelect">    Pest</label>
+            <label for="pestSelect">Pest<span id="ast">*</span></label>
             <select name="Pests" id="pestSelect">
               <option value="aphid">Aphid</option>
             </select>
           </div>
           <div id="densList">
-            <label for="densSelect">    Density</label>
+            <label for="densSelect">Density<span id="ast">*</span></label>
             <select name="Density" id="densSelect">
               <option value="low">Low</option>
               <option value="medium">Medium</option>
               <option value="high">High</option>
             </select>
           </div>
+          <div id="farmList">
+            <label for="farmSelect">Location<span id="ast">*</span></label>
+            <select name="Location" id="farmSelect">
+              <option value="0">Sam's Farm</option>
+              <option value="1">George's Fruit</option>
+            </select>
+          </div>
+          <div id="pestDesc">
+            <label for="descForm">Description</label>
+            <textarea id="descForm" type="text" contenteditable="true"></textarea>
+          </div>
+          <div id="dateDiv">
+            <label for="date">Date<span id="ast">*</span></label>
+            <input id="date" type="date"></textarea>
+          </div>
+          <div id="uploadPic">
+            <form action="/action_page.php" id="imgUpload">
+              <input class="inputFile" type="file" id="img" name="img" accept="image/*">
+              <label for="img" id="imgLabel">Upload Photo</label>
+            </form>
+          </div>
+          <button id="postButton" name="Post">Post</button>
         </div>
       </div>
       <div id="slide-3">
@@ -76,7 +133,5 @@
     </div>
   </div>
 </body>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeqcTqg2f0qYqELzFBtUfO3VJJcIwYlS8&callback=initMap"
-type="text/javascript"></script>
 <script src="main.js"></script>
 </html>
