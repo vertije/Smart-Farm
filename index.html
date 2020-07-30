@@ -4,23 +4,114 @@
   <title>Smart Farm</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="style.css">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeqcTqg2f0qYqELzFBtUfO3VJJcIwYlS8&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeqcTqg2f0qYqELzFBtUfO3VJJcIwYlS8&callback=initMap&libraries=&v=weekly"
+  defer
+  ></script> -->
 </head>
-<body>
+<body id="body">
   <div id="notifications">
     <span class="heading">Notifications</span>
     <svg id="notificationClose" onclick="closeNotifications()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+  </div>
+  <div id="multPests">
+    <span class="heading">Sam's Farm</span>
+    <svg id="multPestsClose" onclick="closeMultPests()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+  </div>
+  <div id="addFarm">
+    <span class="heading">Add Farm</span>
+    <svg id="addFarmClose" onclick="closeAddFarm()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+    <div id="sep"></div>
+    <div style="height: auto;">
+      <label for="addFarmName" class="inputLabel">Farm Name</label>
+      <input id="addFarmName" class="inputDef" type="text">
+    </div>
+    <div id="sep"></div>
+    <span class="inputLabel">Crops</span>
+    <div class="row" id="cropRow1">
+      <label class="container col inputLabel">Wheat
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container col inputLabel">Barley
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+    <div class="row">
+      <label class="container col inputLabel">Cotton
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container col inputLabel">Oats
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+    <div class="row">
+      <label class="container col inputLabel">Sorghum
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+    <div id="sep"></div>
+    <span class="inputLabel">Location</span>
+    <div style="height: auto;">
+      <label for="addFarmCountry" class="inputLabel">Country</label>
+      <input id="addFarmCountry" class="inputDef" type="text">
+    </div>
+    <div style="height: auto;">
+      <label for="addFarmState" class="inputLabel">State</label>
+      <input id="addFarmState" class="inputDef" type="text">
+    </div>
+    <div style="height: auto;">
+      <label for="addFarmCity" class="inputLabel">Suburb/City</label>
+      <input id="addFarmCity" class="inputDef" type="text">
+    </div>
+    <div style="height: auto;">
+      <label for="addFarmPostcode" class="inputLabel">Postcode</label>
+      <input id="addFarmPostcode" class="inputDef" type="text">
+    </div>
+    <div id="sep"></div>
+    <button id="postButton" name="Post" style="width: calc(100% - 1rem);">Add Farm</button>
+  </div>
+  <div id="settings">
+    <span class="heading">Settings</span>
+    <svg id="settingsClose" onclick="closeSettings()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+    <div id="sep"></div>
+    <span class="setting">Nearby Pest Alarm</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="sliderCheck round"></span>
+    </label>
+    <div id="sep" style="margin-top: 1.5rem;"></div>
+    <span class="setting">Pesticide Recommendation</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="sliderCheck round"></span>
+    </label>
+    <div id="sep" style="margin-top: 1.5rem;"></div>
+    <span style="font-size: 1.5rem;font-family: 'Bebas Neue'">Farms</span>
+    <div id="sep"></div>
+    <div id="farmsSettings">
+      <span>Sam's Farm</span>
+      <svg class="smallCross" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z"  transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+      <div id="sep"></div>
+      <span>George's Fruit</span>
+      <svg class="smallCross" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
+      <div id="sep"></div>
+    </div>
+    <button id="postButton" name="Post" style="position: relative;top: 0;width: 100%" onclick="openAddFarm()">Add Farm</button>
   </div>
   <div id="pestInfo">
     <span class="heading">Pest Name</span>
     <svg id="pestInfoClose" onclick="closePestInfo()" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.97 507.97"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M743.51,388.84,632.35,500,504.91,372.57,616.08,261.4a52.91,52.91,0,0,1,74.6,0l52.83,52.84A52.9,52.9,0,0,1,743.51,388.84Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M377.48,500,504.91,627.43,393.75,738.6a52.91,52.91,0,0,1-74.6,0l-52.83-52.84a52.9,52.9,0,0,1,0-74.6Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M393.75,261.4,504.91,372.57,377.48,500,266.32,388.84a52.9,52.9,0,0,1,0-74.6l52.83-52.84A52.91,52.91,0,0,1,393.75,261.4Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M743.51,685.76,690.68,738.6a52.91,52.91,0,0,1-74.6,0L504.91,627.43,632.35,500,743.51,611.16A52.9,52.9,0,0,1,743.51,685.76Z" transform="translate(-250.93 -246.02)"/><path class="cls-1" d="M503.59,372.57l118.66.35L631,500l4.39,144.07L503.59,627.43s-67.06,5.8-73.27,4.25S376.16,500,376.16,500L358.05,382.25l142.2-5.44Z" transform="translate(-250.93 -246.02)"/></svg>
   </div>
   <div id="topBar">
-
+    <svg id="Layer_6" onclick="openSettings()" class="settingsIco" data-name="Layer 6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920.16 2000"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>settings</title><path class="cls-1" d="M971,194.86c-444.67,0-805.15,360.47-805.15,805.14S526.35,1805.14,971,1805.14s805.14-360.47,805.14-805.14S1415.69,194.86,971,194.86Zm-21.87,1137c-183.26,0-331.83-148.56-331.83-331.83S765.89,668.17,949.15,668.17,1281,816.73,1281,1000s-148.56,331.83-331.83,331.83Z" transform="translate(0.01)"/><path class="cls-1" d="M617.32,1000c0-168.06,124.95-306.92,287-328.81L331.49,340.46a116.37,116.37,0,0,0-159,42.57l0,0-135,233.88a116.38,116.38,0,0,0,42.57,159h0l550.75,318A331.88,331.88,0,0,1,617.32,1000Z" transform="translate(0.01)"/><path class="cls-1" d="M1862,1224.08,1256.38,874.45A330.8,330.8,0,0,1,1281,1000c0,156.45-108.28,287.6-254,322.63l583.55,336.91a116.38,116.38,0,0,0,159-42.59h0l135-233.88A116.39,116.39,0,0,0,1862,1224.08Z" transform="translate(0.01)"/><path class="cls-1" d="M617.32,1000A331.27,331.27,0,0,1,635.8,890.6L58.21,1224.08a116.37,116.37,0,0,0-42.63,159l0,0,135,233.88a116.4,116.4,0,0,0,159,42.61h0l577.63-333.49C733.57,1297.05,617.32,1162.11,617.32,1000Z" transform="translate(0.01)"/><path class="cls-1" d="M1882.69,616.94l-135-233.88a116.38,116.38,0,0,0-159-42.62l0,0L1011.09,674C1164.77,703,1281,837.94,1281,1000a331.27,331.27,0,0,1-18.48,109.4l577.55-333.48a116.37,116.37,0,0,0,42.61-159Z" transform="translate(0.01)"/><path class="cls-1" d="M949.15,668.17c113.36,0,213.42,56.85,273.28,143.59V116.38A116.38,116.38,0,0,0,1106.09,0H836A116.4,116.4,0,0,0,719.6,116.38v644A330.73,330.73,0,0,1,949.15,668.17Z" transform="translate(0.01)"/><path class="cls-1" d="M949.15,1331.83a330.72,330.72,0,0,1-229.55-92.22v644A116.39,116.39,0,0,0,836,2000h270.11a116.39,116.39,0,0,0,116.38-116.38h0V1188.24C1162.57,1275,1062.51,1331.83,949.15,1331.83Z" transform="translate(0.01)"/></svg>
   </div>
   <a id="notifButton" onclick="openNotifications()">
     <div id="exclam">
@@ -31,25 +122,26 @@
     <nav class="navbar">
       <ul class="navbar-nav">
         <li class="logo">
-        <a href="#slide-1" class="nav-link">
-          <span class="link-text logo-text">Fireship</span>
-          <svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1629.2 1337.95"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>home</title><path class="cls-1" d="M239.08,728.05,777.72,321.67a61.2,61.2,0,0,1,73.72,0l538.64,406.38a27.65,27.65,0,0,1,10.63,22.12v560.89c0,14.86-11,26.91-24.68,26.91H960.25c-13.64,0-24.69-12-24.69-26.91V1013.84c0-14.86-11-26.91-24.68-26.91H718.28c-13.63,0-24.68,12-24.68,26.91v297.22c0,14.86-11,26.91-24.69,26.91H253.13c-13.63,0-24.68-12-24.68-26.91V750.17A27.65,27.65,0,0,1,239.08,728.05Z" transform="translate(0 -0.02)"/><path class="cls-1" d="M0,671.05v79.74c0,36,37.35,57,64.26,36.1L762.1,244.63a85.53,85.53,0,0,1,105,0l697.84,542.26c26.91,20.91,64.26-.06,64.26-36.1V671.05c0-14.51-6.51-28.09-17.43-36.38l-742.62-615a85.49,85.49,0,0,0-109.06,0l-742.62,615C6.51,643,0,656.54,0,671.05Z" transform="translate(0 -0.02)"/><path class="cls-1" d="M1199.13,413.87V124.57a56.06,56.06,0,0,1,56.06-56.06h89.46a56.06,56.06,0,0,1,56.06,56.06h0V474.74c0,45-50.36,71.66-87.58,46.36l-89.46-60.82A56,56,0,0,1,1199.13,413.87Z" transform="translate(0 -0.02)"/></svg>
-        </a>
+          <a href="#slide-1" class="nav-link">
+            <span class="link-text logo-text">Fireship</span>
+            <svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1629.2 1337.95"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>home</title><path class="cls-1" d="M239.08,728.05,777.72,321.67a61.2,61.2,0,0,1,73.72,0l538.64,406.38a27.65,27.65,0,0,1,10.63,22.12v560.89c0,14.86-11,26.91-24.68,26.91H960.25c-13.64,0-24.69-12-24.69-26.91V1013.84c0-14.86-11-26.91-24.68-26.91H718.28c-13.63,0-24.68,12-24.68,26.91v297.22c0,14.86-11,26.91-24.69,26.91H253.13c-13.63,0-24.68-12-24.68-26.91V750.17A27.65,27.65,0,0,1,239.08,728.05Z" transform="translate(0 -0.02)"/><path class="cls-1" d="M0,671.05v79.74c0,36,37.35,57,64.26,36.1L762.1,244.63a85.53,85.53,0,0,1,105,0l697.84,542.26c26.91,20.91,64.26-.06,64.26-36.1V671.05c0-14.51-6.51-28.09-17.43-36.38l-742.62-615a85.49,85.49,0,0,0-109.06,0l-742.62,615C6.51,643,0,656.54,0,671.05Z" transform="translate(0 -0.02)"/><path class="cls-1" d="M1199.13,413.87V124.57a56.06,56.06,0,0,1,56.06-56.06h89.46a56.06,56.06,0,0,1,56.06,56.06h0V474.74c0,45-50.36,71.66-87.58,46.36l-89.46-60.82A56,56,0,0,1,1199.13,413.87Z" transform="translate(0 -0.02)"/></svg>
+          </a>
         </li>
 
         <li class="nav-item">
-        <a href="#slide-2" class="nav-link">
-          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600.14 600.14"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>plus</title><path class="cls-1" d="M590.11,252.68V409.89H409.89V252.68a52.91,52.91,0,0,1,52.75-52.75h74.72A52.91,52.91,0,0,1,590.11,252.68Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M409.89,590.11H590.11V747.32a52.91,52.91,0,0,1-52.75,52.75H462.64a52.91,52.91,0,0,1-52.75-52.75Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M252.68,409.89H409.89V590.11H252.68a52.91,52.91,0,0,1-52.75-52.75V462.64A52.91,52.91,0,0,1,252.68,409.89Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M800.07,462.64v74.72a52.91,52.91,0,0,1-52.75,52.75H590.11V409.89H747.32A52.91,52.91,0,0,1,800.07,462.64Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M409.89,409.89,494,326.24l96.07,83.65,105,98.77-105,81.45s-43.32,51.52-48.81,54.81-131.41-54.81-131.41-54.81l-96.07-70.46,96.71-104.4Z" transform="translate(-199.93 -199.93)"/></svg>
-          <span class="link-text logo-text">yep</span>
-        </a>
+          <a href="#slide-2" class="nav-link">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600.14 600.14"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>plus</title><path class="cls-1" d="M590.11,252.68V409.89H409.89V252.68a52.91,52.91,0,0,1,52.75-52.75h74.72A52.91,52.91,0,0,1,590.11,252.68Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M409.89,590.11H590.11V747.32a52.91,52.91,0,0,1-52.75,52.75H462.64a52.91,52.91,0,0,1-52.75-52.75Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M252.68,409.89H409.89V590.11H252.68a52.91,52.91,0,0,1-52.75-52.75V462.64A52.91,52.91,0,0,1,252.68,409.89Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M800.07,462.64v74.72a52.91,52.91,0,0,1-52.75,52.75H590.11V409.89H747.32A52.91,52.91,0,0,1,800.07,462.64Z" transform="translate(-199.93 -199.93)"/><path class="cls-1" d="M409.89,409.89,494,326.24l96.07,83.65,105,98.77-105,81.45s-43.32,51.52-48.81,54.81-131.41-54.81-131.41-54.81l-96.07-70.46,96.71-104.4Z" transform="translate(-199.93 -199.93)"/></svg>
+            <span class="link-text logo-text">yep</span>
+          </a>
         </li>
 
         <li class="nav-item">
-        <a href="#slide-3" class="nav-link" id="item3">
-          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1468.61 2000"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>location</title><path class="cls-1" d="M850.48,988.56a280.06,280.06,0,0,1-232.34,0H45.23S423.94,2000,734.31,2000,1423.38,988.56,1423.38,988.56Z"/><path class="cls-1" d="M734.31,0C328.76,0,0,328.76,0,734.3s328.76,734.31,734.31,734.31,734.3-328.76,734.3-734.31S1139.85,0,734.31,0Zm0,1013.79c-154.36,0-279.49-125.13-279.49-279.49S580,454.82,734.31,454.82,1013.79,580,1013.79,734.3,888.66,1013.79,734.31,1013.79Z"/></svg>
-          <span class="link-text">Shuttle</span>
-        </a>
+          <a href="#slide-3" class="nav-link" id="item3">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1468.61 2000"><defs><style>.cls-1{fill:#3fa585;}</style></defs><title>location</title><path class="cls-1" d="M850.48,988.56a280.06,280.06,0,0,1-232.34,0H45.23S423.94,2000,734.31,2000,1423.38,988.56,1423.38,988.56Z"/><path class="cls-1" d="M734.31,0C328.76,0,0,328.76,0,734.3s328.76,734.31,734.31,734.31,734.3-328.76,734.3-734.31S1139.85,0,734.31,0Zm0,1013.79c-154.36,0-279.49-125.13-279.49-279.49S580,454.82,734.31,454.82,1013.79,580,1013.79,734.3,888.66,1013.79,734.31,1013.79Z"/></svg>
+            <span class="link-text">Shuttle</span>
+          </a>
         </li>
+
 
       </ul>
     </nav>
@@ -87,47 +179,47 @@
         <div>
           <span class="heading">Add Alert</span>
           <div id="sep"></div>
-          <div id="pestList">
-            <label for="pestSelect">Pest<span id="ast">*</span></label>
-            <select name="Pests" id="pestSelect">
-              <option value="aphid">Aphid</option>
-            </select>
-          </div>
-          <div id="densList">
-            <label for="densSelect">Density<span id="ast">*</span></label>
-            <select name="Density" id="densSelect">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-          </div>
-          <div id="farmList">
-            <label for="farmSelect">Location<span id="ast">*</span></label>
-            <select name="Location" id="farmSelect">
-              <option value="0">Sam's Farm</option>
-              <option value="1">George's Fruit</option>
-            </select>
-          </div>
-          <div id="pestDesc">
-            <label for="descForm">Description</label>
-            <textarea id="descForm" type="text" contenteditable="true"></textarea>
-          </div>
-          <div id="dateDiv">
-            <label for="date">Date<span id="ast">*</span></label>
-            <input id="date" type="date"></textarea>
-          </div>
-          <div id="uploadPic">
-            <form action="/action_page.php" id="imgUpload">
-              <input class="inputFile" type="file" id="img" name="img" accept="image/*">
+          <form method="post" action="/add" class="form">
+            <div id="pestList">
+              <label for="pestSelect">Pest<span id="ast">*</span></label>
+              <select name="Pests" id="pestSelect">
+                <option value="aphid">Aphid</option>
+              </select>
+            </div>
+            <div id="densList">
+              <label for="densSelect">Density<span id="ast">*</span></label>
+              <select name="Density" id="densSelect">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div id="farmList">
+              <label for="farmSelect">Location<span id="ast">*</span></label>
+              <select name="Location" id="farmSelect">
+                <option value="Sam's Farm">Sam's Farm</option>
+                <option value="George's Fruits">George's Fruit</option>
+              </select>
+            </div>
+            <div id="pestDesc">
+              <label for="descForm">Description</label>
+              <textarea name="Description" id="descForm" type="text" contenteditable="true"></textarea>
+            </div>
+            <div id="dateDiv">
+              <label for="date">Date<span id="ast">*</span></label>
+              <input name="Date" id="date" type="date"></textarea>
+            </div>
+            <div id="uploadPic">
+              <input class="inputFile" type="file" id="img" name="Image" accept="image/*">
               <label for="img" id="imgLabel">Upload Photo</label>
-            </form>
-          </div>
-          <button id="postButton" name="Post">Post</button>
+            </div>
+            <button type="submit" id="postButton" name="Post">Post</button>
+          </form>
         </div>
       </div>
       <div id="slide-3">
         <div id="mapDiv">
-          <div id="map"></div>
+          <div id="mapArea"></div>
         </div>
       </div>
     </div>

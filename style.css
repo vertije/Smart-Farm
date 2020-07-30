@@ -7,7 +7,7 @@
     opacity: 1;
   }
 }
-*{
+/* *{
   padding:0;
   margin:0;
   height: 100%;
@@ -18,6 +18,41 @@
   --bg-primary: #f2f2f2;
   --bg-secondary: #c2c2c2;
   --transition-speed: 600ms;
+} */
+body,html{
+  padding:0;
+  margin:0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #f2f2f2;
+  --bg-secondary: #c2c2c2;
+  --transition-speed: 600ms;
+  box-sizing: border-box;
+}
+.mapDetHeader{
+  font-size: 0.85rem;
+}
+.rightAlign{
+  text-align: right;
+}
+.mapDetails{
+  line-height: 1.2;
+}
+.row{
+  display: flex;
+  height: auto;
+  align-items:center;
+}
+.col{
+  flex: 50%;
+}
+.setting{
+  margin-right: 0;
+  width: calc(100% - 7rem);
+  height: auto;
 }
 .pestName{
   font-size: .95rem;
@@ -55,13 +90,33 @@
   position: inherit;
   margin-bottom: 0.2rem;
 }
-#pestInfoClose, #notificationClose{
+.smallCross{
+  position: fixed;
+  filter: grayscale(100%);
+  width: 1rem;
+  height: auto;
+  right: 1rem;
+}
+.inputLabel{
+  font-size: 0.75rem;
+}
+#cropRow1{
+  margin-top: 0.5rem;
+}
+#addFarmName, #addFarmCity, #addFarmState, #addFarmCountry, #addFarmPostcode{
+  width: calc(100% - 0.8rem);
+  height: 2rem;
+}
+#farmsSettings{
+  height: auto;
+}
+#pestInfoClose, #notificationClose, #settingsClose, #addFarmClose, #multPestsClose{
   filter: grayscale(100%);
   width: 1.5rem;
   height: auto;
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: 0.8rem;
 }
 #sep{
   height: 1px;
@@ -70,10 +125,10 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-#pestInfo, #notifications{
+#pestInfo, #notifications, #settings, #addFarm, #multPests{
   display: none;
   animation-name: fadeIn;
-  animation-duration: 0.5s;
+  animation-duration: 0.2s;
   position: absolute;
   width: calc(100% - 1rem);
   height: calc(100% - 7rem);
@@ -84,6 +139,9 @@
   background-color: white;
   z-index: 1006;
 }
+#addFarm{
+  z-index: 1007;
+}
 #notifButton{
   z-index: 1004;
   position: absolute;
@@ -92,7 +150,7 @@
   border-radius: 1rem;
   background: black;
   top: 4rem;
-  right: 1rem;
+  right: 0.75rem;
   background-color: #f2f2f2;
 }
 #exclam{
@@ -105,8 +163,8 @@
 #mapDiv{
   position: absolute;
   overflow: hidden;
-  top: 3rem;
-  height: calc(100% - 5.5rem);
+  top: 0;
+  height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -114,13 +172,15 @@
 #slide-3{
   touch-action: none;
 }
-#map{
-  position: fixed;
+#mapArea{
+  position: absolute;
+  z-index: 900;
   width: 100%;
   height: 100%;
   margin-top: 0;
 }
 #topBar{
+  top: 0;
   width: 100%;
   height: 3rem;
   background-color: #f2f2f2;
@@ -134,21 +194,26 @@
   font-size: 0.75rem;
   font-family: 'Roboto', sans-serif;
 }
-.slides > div > div > div > select, .slides > div > div > div > textarea, .slides > div > div > div > input, .slides > div > div > div > form > input{
+.slides > div > div > form > div > select, .slides > div > div > form > div > textarea, .slides > div > div > form > div > input, .slides > div > div > form > div > form > input, .inputDef{
   height: 2.5rem;
+  width: 100%;
   font-size: 0.75rem;
   border-radius: 1rem;
   padding: 0.25rem;
   font-family: 'Roboto', sans-serif;
   border: 2px solid #f2f2f2;
+  background-color: white;
+}
+.slides > div > div > form > div{
+  margin-top: 0.2rem;
+}
+.form{
+  font-size: 0.75rem;
 }
 #descForm, #date{
   width: calc(100% - 1.25rem);
   padding: 0.5rem;
   overflow: scroll;
-}
-#dateDiv{
-  margin-top: 2rem;
 }
 #date{
   height: 1.25rem;
@@ -172,14 +237,14 @@
 }
 #imgLabel{
   position: relative;
-  top: 35%;
+  top: 1rem;
 }
 #uploadPic:hover, #postButton:focus{
   transition: 0.5s;
   border: 2px solid #3fa585;
 }
 #postButton{
-  position: inherit;
+  position: absolute;
   bottom: 1rem;
   width: calc(100% - 1rem);
   height: 3rem;
@@ -191,7 +256,7 @@
 #ast{
   color: red;
 }
-.slides > div > div > div > select:focus, .slides > div > div > div > textarea:focus, .slides > div > div > div > input:focus {
+.slides > div > div > div > select:focus, .slides > div > div > div > textarea:focus, .slides > div > div > div > input:focus, .inputDef:focus {
   transition: 0.5s;
   border: 2px solid #3fa585;
 }
@@ -199,8 +264,17 @@
   margin-top: 0;
   font-family: 'Bebas Neue';
   font-size: 2.5rem;
+  height: auto;
+  line-height: 1;
 }
-
+.settingsIco{
+  position: inherit;
+  right: 0.6rem;
+  top: 0.6rem;
+  width: 1.75rem;
+  height: auto;
+  filter: grayscale(100%);
+}
 .slides > div > div{
   position: absolute;
   width: calc(100% - 1rem);
@@ -212,19 +286,19 @@
 }
 
 .slider {
-  z-index: 1001;
+  top: 0;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
   width: 100%;
-  height: 100%;
+  height: calc(100%);
   text-align: center;
   overflow: hidden;
+  z-index: 1001;
 }
 
 .slides {
   display: flex;
+  width: 100%;
+  height: 100%;
 
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -239,30 +313,50 @@
   scroll-snap-type: mandatory;
   */
 }
-.slides::-webkit-scrollbar, #descForm::-webkit-scrollbar {
-  width: 0.0rem;
-  height: 0.5rem;
+.slides::-webkit-scrollbar {
+  width: 0px;
+  opacity: 0;
+  display: none;
 }
-.slides::-webkit-scrollbar-thumb, #descForm::-webkit-scrollbar-thumb {
+.slides::-webkit-scrollbar-thumb {
   background: black;
   border-radius: 10px;
-  opacity: 0.5
+  display: none;
 }
-.slides::-webkit-scrollbar-track. #descForm::-webkit-scrollbar-track {
+.slides::-webkit-scrollbar-track {
   background: transparent;
 }
 .slides > div {
+  z-index: 1001;
   scroll-snap-align: start;
   flex-shrink: 0;
   width: 100%;
   height: 100%;
-  background: #ffffff;
+  margin-right: 50px;
+  background: white;
   transform-origin: center center;
   transform: scale(1);
   transition: transform 0.5s;
-  position: flex;
+  position: relative;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 100px;
+}
+.slides > div:target {
+/*   transform: scale(0.8); */
+}
+.author-info {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
 }
 .author-info a {
   color: white;
@@ -274,6 +368,19 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.slider > a {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
 }
 .slider > a:active {
   top: 1px;
@@ -291,23 +398,29 @@ img {
 
 html, body {
   height: 100%;
-  overflow: scroll;
+  overflow: hidden;
 }
 body {
-  display: absolute;
+  display: flex;
   align-items: center;
   justify-content: center;
+  background: white;
 }
 
+#bottomBar{
+  width: 100%;
+}
 .navbar {
   z-index: 1004;
-  position: fixed;
+  width: 100%;
+  position: absolute;
   background-color: var(--bg-primary);
   transition: width 600ms ease;
   overflow: scroll;
   bottom: 0;
-  width: 100vw;
+  left: 0;
   height: 3rem;
+  overflow-x: hidden;
 }
 
 .navbar-nav {
@@ -317,8 +430,6 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100%;
-  flex-direction: row;
 }
 
 .nav-item {
@@ -356,7 +467,7 @@ body {
   max-height: 1.5rem;
   min-width: 1.5rem;
   min-height: 1.5rem;
-  margin: 0 2rem;
+  margin: 0 3rem;
 }
 
 .fa-primary {
@@ -407,3 +518,131 @@ body {
 .solar #solarIcon {
   display: block;
 } */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 1.5rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.sliderCheck {
+  position: absolute;
+  cursor: pointer;
+  right: 1rem;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  width: 3.6rem;
+  height: 2rem;
+}
+
+.sliderCheck:before {
+  position: absolute;
+  content: "";
+  height: 1.5rem;
+  width: 1.5rem;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .sliderCheck {
+  background-color: #3fa585;
+}
+
+input:focus + .sliderCheck {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .sliderCheck:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.sliderCheck.round {
+  border-radius: 1rem;
+}
+
+.sliderCheck.round:before {
+  border-radius: 50%;
+}
+/* Customize the label (the container) */
+.container {
+  padding-top: 0.4rem;
+  display: block;
+  position: relative;
+  padding-left: 2rem;
+  width: 50%;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: white;
+}
